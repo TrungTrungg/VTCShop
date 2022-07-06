@@ -1,0 +1,102 @@
+.header_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgb(255, 240, 240);
+    z-index: 2;
+    .wrapper {
+        & .header_content {
+            &_top {
+                height: 15rem;
+                position: relative;
+                border-bottom: thin solid rgb(77, 76, 76);
+                & .phone-contact {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-150%);
+                    & .icon {
+                        font-size: 1.6rem;
+                        margin-right: .3rem;
+                    }
+                }
+                & .logo {
+                    text-align: center;
+                    transform: translateX(4%);
+                    & a {
+                        line-height: 15rem;
+                        font-size: 10rem;
+                        letter-spacing: 10rem;
+                        color: #000;
+                    }
+                }
+                & .account {
+                    position: absolute;
+                    right: 0;
+                    top: 25%;
+                    background-color: #ff3399;
+                    height: 5rem;
+                    width: 20rem;
+                    border-radius: 1rem;
+                    & p {
+                        font-weight: 600;
+                        color: #fff;
+                        text-align: center;
+                        line-height: 5rem;
+                    }
+                    & .btn-logout {
+                        position: absolute;
+                        display: flex;
+                        right: 0;
+                        top: 0;
+                        background-color: #fff;
+                        height: 10rem;
+                        width: 20rem;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 1rem;
+                        box-shadow: 0 0.2rem 0.2rem 0.2rem #888688;
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: opacity .5s, top .5s ease;
+                        & p {
+                            color: #000;
+                            width: 15rem;
+                            margin: 0 auto;
+                            background-color: $primary-color-hover;
+                            border-radius: .5rem;
+                            &:hover {
+                                background-color: #EFE3AC;
+                            }
+                        }
+                    }
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    &:hover>.btn-logout {
+                        opacity: 1;
+                        top: 100%;
+                        visibility: visible;
+                    }
+                }
+            }
+            &_nav {
+                margin-top: 2rem;
+                padding-bottom: 2rem;
+                & .nav_menu {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    gap: 5rem;
+                    & .menu {
+                        justify-self: center;
+                        & .icon {
+                            font-size: 1.6rem;
+                            padding-right: .5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

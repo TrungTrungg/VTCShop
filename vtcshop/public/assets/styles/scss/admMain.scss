@@ -1,0 +1,13 @@
+@import './abstracts/variables';
+@import './base/reset';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import './components/pagination';
+@import './layouts/adminHeader';
+@import './layouts/dashboard';
+@import './layouts/adminModal';
+@import './layouts/adminFooter';

@@ -1,0 +1,23 @@
+@mixin flex-box($display, $direction, $justify-content) {
+    display: $display;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+}
+
+@mixin responsive_mobile() {
+    @media #{$res_mobile} {
+        @content;
+    }
+}
+
+@mixin responsive_tablet() {
+    @media #{$res_mobile} {
+        @content;
+    }
+}
+
+@mixin responsive_pc() {
+    @media #{$res_mobile} {
+        @content;
+    }
+}
