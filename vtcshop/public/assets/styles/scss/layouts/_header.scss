@@ -1,0 +1,296 @@
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: $bg-color3;
+    z-index: 99;
+    & .wrapper {
+        width: 131rem;
+        margin: 0 auto;
+    }
+    &_content {
+        @include flex-box(flex, row, space-between);
+        height: 8.4rem;
+        border-bottom: thin solid #240d05cc;
+        &_logo {
+            width: 24rem;
+            height: 6.4rem;
+            line-height: 8.4rem;
+            & a {
+                text-decoration: none;
+                & p {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    font-weight: 500;
+                    font-size: 5rem;
+                    letter-spacing: 6rem;
+                }
+            }
+        }
+        &_search {
+            position: relative;
+            @include flex-box(flex, row, flex-start);
+            line-height: 8.4rem;
+            & input {
+                margin: 2rem .1rem;
+                &:focus {
+                    background: linear-gradient(to left, #ffcccc 0%, #ffffcc 100%);
+                }
+            }
+            & .search_inputField {
+                background-color: $bg-color2;
+                width: 50rem;
+                height: 3.6rem;
+                padding-left: 1.5rem;
+                border-radius: 0.4rem;
+                border: thin solid #000;
+            }
+            & .search_suggestions {
+                position: absolute;
+                width: 100%;
+                top: 75%;
+                & ul {
+                    width: 100%;
+                    background-color: $bg-color2;
+                    box-shadow: 0 0.2rem 0.2rem 0.2rem #888688;
+                    border-radius: 0 0 1rem 1rem;
+                    & .search_item {
+                        & a {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            & .search_img {
+                                width: 7rem;
+                                height: 7rem;
+                                margin: 1rem;
+                                border: thin solid rgb(236, 0, 91);
+                            }
+                            & .search_name {
+                                font-size: 1.6rem;
+                                font-weight: 500;
+                                margin-left: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+            & .search_button {
+                @include flex-box(flex, row, center);
+                align-items: center;
+                background-color: $primary-color;
+                height: 4rem;
+                margin: 2rem .1rem;
+                padding: 0 5px;
+                border: none;
+                border-radius: 0.4rem;
+                & .search_icon {
+                    padding-right: .5rem;
+                    color: $bg-color2;
+                }
+                & span {
+                    color: $bg-color2;
+                }
+                &:hover {
+                    background-color: $primary-color-hover;
+                    cursor: pointer;
+                }
+            }
+        }
+        &_account {
+            position: relative;
+            @include flex-box(flex, row, space-between);
+            align-items: center;
+            line-height: 8.4rem;
+            word-spacing: .2rem;
+            & .account_icon {
+                font-size: 3rem;
+                color: $primary-color;
+            }
+            & span {
+                height: inherit;
+                font-size: 1.4rem;
+                padding-left: 1rem;
+                white-space: pre-line;
+                line-height: 2rem;
+                &:nth-child(2) {
+                    font-weight: 500;
+                }
+            }
+            &:hover {
+                color: $primary-color-hover;
+                &>span {
+                    color: $primary-color-hover;
+                }
+                &>.btn_item {
+                    opacity: 1;
+                    top: calc(100% - 2rem);
+                    visibility: visible;
+                    z-index: 1;
+                }
+            }
+            & .btn_item {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                top: calc(100% - 4rem);
+                left: -2.2rem;
+                width: 22rem;
+                height: 13rem;
+                background-color: #fff;
+                box-shadow: 0 0.2rem 0.2rem 0.2rem #888688;
+                border-radius: .6rem;
+                align-items: center;
+                gap: 1rem;
+                opacity: 0;
+                z-index: -1;
+                visibility: hidden;
+                transition: opacity .5s ease, top .5s ease, z-index 0.6s;
+                & a {
+                    text-decoration: none;
+                }
+                & .btn_login,
+                .btn_regist,
+                .btn_logout {
+                    background-color: $primary-color-hover;
+                    text-align: center;
+                    line-height: 4rem;
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    width: 16rem;
+                    height: 4rem;
+                    border-radius: .3rem;
+                    transform: translateY(50%);
+                    &:hover {
+                        background-color: #EFE3AC;
+                        cursor: pointer;
+                    }
+                }
+                & .btn_logout {
+                    line-height: 4.3rem;
+                    margin-top: 2.8rem;
+                }
+            }
+        }
+        // & .modal_account {
+        //     position: absolute;
+        //     display: none;
+        //     width: 100vw;
+        //     left: 0;
+        //     height: 100vh;
+        //     background-color: rgba(37, 28, 28, 0.6);
+        //     z-index: 2;
+        //     &.open {
+        //         display: block;
+        //     }
+        //     & .modal_form {
+        //         position: absolute;
+        //         background-color: #fff;
+        //         width: 50rem;
+        //         height: 40rem;
+        //         left: 33%;
+        //         top: 10%;
+        //         border-radius: 1rem;
+        //         animation: modalFadeIn ease .4s;
+        //         & .modal_header {
+        //             position: relative;
+        //             & p {
+        //                 text-align: center;
+        //                 font-size: 1.5rem;
+        //                 padding-top: 3rem;
+        //                 line-height: 3rem;
+        //                 &:nth-child(1) {
+        //                     padding-top: 2rem;
+        //                     font-size: 3rem;
+        //                 }
+        //                 & span {
+        //                     font-weight: 500;
+        //                     &:hover {
+        //                         cursor: pointer;
+        //                     }
+        //                 }
+        //             }
+        //             & .modal_icon {
+        //                 position: absolute;
+        //                 top: 0;
+        //                 right: 0;
+        //                 font-size: 2rem;
+        //                 padding: 1rem;
+        //                 padding-right: 2rem;
+        //             }
+        //         }
+        //         & .modal_body {
+        //             padding-top: 3rem;
+        //             & .form {
+        //                 & input {
+        //                     display: block;
+        //                     width: calc(100% - 4rem);
+        //                     height: 5rem;
+        //                     margin: 2rem;
+        //                     line-height: 2rem;
+        //                     border: none;
+        //                     border-bottom: .2rem solid #ff9999;
+        //                     ;
+        //                     &:focus {
+        //                         outline: none;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         & .modal_footer {
+        //             & button {
+        //                 background-color: $primary-color-hover;
+        //                 width: calc(100% - 4rem);
+        //                 margin: 2rem;
+        //                 line-height: 4rem;
+        //                 font-size: 2rem;
+        //                 font-weight: 500;
+        //                 border: none;
+        //                 border-radius: .5rem;
+        //                 &:hover {
+        //                     background-color: $primary-color-hover2;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     & .height_regist {
+        //         height: 65rem;
+        //     }
+        // }
+        // @keyframes modalFadeIn {
+        //     from {
+        //         top: -20%;
+        //     }
+        //     to {
+        //         top: 10%;
+        //     }
+        // }
+        &_cart {
+            line-height: 8.4rem;
+            & a {
+                text-decoration: none;
+                & .cart_button {
+                    @include flex-box(flex, row, center);
+                    align-items: center;
+                    background-color: $primary-color;
+                    width: 12rem;
+                    height: 4rem;
+                    margin: 2rem .1rem;
+                    padding: 0 .5rem;
+                    border-radius: 0.4rem;
+                    font-size: 1.7rem;
+                    & .cart_icon {
+                        padding-right: .5rem;
+                        color: $bg-color2;
+                    }
+                    & span {
+                        color: $bg-color2;
+                        padding-left: 0.5rem;
+                    }
+                    &:hover {
+                        background-color: $primary-color-hover;
+                    }
+                }
+            }
+        }
+    }
+}

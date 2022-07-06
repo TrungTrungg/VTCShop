@@ -1,0 +1,33 @@
+.footer {
+    @include flex-box(inline-flex, row, space-between);
+    margin-top: 2rem;
+    height: 20rem;
+    background-color: black;
+    bottom: 0;
+    width: 100%;
+    & .text-1 {
+        margin-top: 2.5rem;
+        padding-left: 5rem;
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+        & p {
+            color: #fff;
+            &:last-child {
+                padding-top: 4rem;
+            }
+        }
+        & i {
+            color: #fff;
+        }
+    }
+    & .text-2 {
+        margin-top: 3rem;
+        padding-right: 5rem;
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+        color: #fff;
+        & p {
+            color: #fff;
+        }
+    }
+}

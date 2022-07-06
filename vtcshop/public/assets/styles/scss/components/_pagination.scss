@@ -1,0 +1,79 @@
+.cate_footer {
+    width: 100%;
+    background-color: #fff;
+    margin-top: -1rem;
+    border-radius: 0 0 1rem 1rem;
+    .pagination {
+        display: flex;
+        justify-content: center;
+        &-container {
+            padding: 10px 0;
+            border-radius: 8px;
+            background-color: #fff;
+            display: inline-flex;
+            position: relative;
+            overflow: hidden;
+        }
+        &-hover-overlay {
+            background-color: $green;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition-duration: 0.5s;
+            left: 60px;
+            opacity: 0;
+        }
+        .icon-pagination {
+            color: rgba($black, 0.5);
+            font-size: 11px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 3;
+            background-color: #fff;
+        }
+        &-prev {
+            margin-right: 15px;
+            margin-left: 10px;
+            z-index: 1;
+            .icon-pagination-prev {
+                transform: rotate(0deg);
+            }
+        }
+        &-next {
+            margin-left: 15px;
+            margin-right: 10px;
+            z-index: 1;
+            .icon-pagination-next {
+                transform: rotate(180deg);
+            }
+        }
+        &-page-number {
+            border-radius: 5px;
+            color: $black;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.5s;
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+            font-size: 18px;
+            &:hover {
+                cursor: pointer;
+                color: #fff;
+            }
+            &.active {
+                color: #fff;
+            }
+        }
+    }
+}

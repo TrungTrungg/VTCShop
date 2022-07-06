@@ -1,0 +1,251 @@
+.login {
+    &_content {
+        position: relative;
+        width: 35rem;
+        height: 40rem;
+        margin: 15rem auto;
+        color: #73879C;
+        &_header {
+            & h1 {
+                font: $font-large;
+                text-align: center;
+                letter-spacing: -0.05em;
+                margin-bottom: 3rem;
+                color: #73879C;
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    height: .05rem;
+                    width: 25%;
+                    top: 1.5rem;
+                }
+                &::before {
+                    left: 0;
+                    background: linear-gradient(to left, #7e7e7e 0%, #fff 100%);
+                }
+                &::after {
+                    right: 0;
+                    background: linear-gradient(to right, #7e7e7e 0%, #fff 100%);
+                }
+            }
+        }
+        &_body {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem 0;
+            & input {
+                line-height: 2.4rem;
+                padding: .6rem 1.2rem;
+                border: thin solid #c8c8c8;
+                border-radius: .3rem;
+                box-shadow: rgb(255, 255, 255) 0rem .1rem 0rem, rgba(0, 0, 0, 0.08) 0rem -.2rem .5rem inset;
+                outline: none;
+                &:focus {
+                    border: thin solid #e587f1;
+                }
+            }
+            & .error_text {
+                position: relative;
+                top: 0;
+                & p {
+                    position: absolute;
+                    margin-top: -1.2rem;
+                    font-style: italic;
+                    font-size: 1.3rem;
+                    color: red;
+                    left: 2%;
+                    color: $primary-color-hover;
+                    font-style: italic;
+                }
+            }
+        }
+        &_footer,
+        &_footer_border {
+            text-align: center;
+            margin-top: 3rem;
+            & button {
+                border: none;
+                background: none;
+                & p {
+                    font: $font-normal;
+                    margin: 0;
+                    color: #73879C;
+                    &:hover {
+                        color: #000;
+                        cursor: pointer;
+                    }
+                }
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                height: .1rem;
+                width: 100%;
+                top: 22rem;
+                left: 0;
+                background-color: #c8c8c8;
+            }
+            &_border::after {
+                top: 43rem;
+            }
+        }
+        & p {
+            text-align: center;
+            font: $font-small;
+            color: #73879C;
+            margin-top: 3rem;
+            & a {
+                text-decoration: none;
+                color: #73879C;
+                &:hover {
+                    color: #000;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.wrapper {
+    .modal_account {
+        position: absolute;
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        background-color: rgba(37, 28, 28, 0.6);
+        z-index: 2;
+        &.open {
+            display: block;
+        }
+        & .modal_content {
+            position: absolute;
+            background-color: #f7f7f7;
+            width: 50rem;
+            height: 15rem;
+            left: 33%;
+            top: 10%;
+            border-radius: .3rem;
+            animation: modalFadeIn ease .4s;
+            & .modal-htext {
+                text-align: center;
+                font-weight: 600;
+                font-size: 3rem;
+            }
+            & .modal_header {
+                position: relative;
+                & p {
+                    text-align: center;
+                    font-size: 1rem;
+                    padding-top: 3rem;
+                    line-height: 3rem;
+                    &:nth-child(1) {
+                        padding-top: 2rem;
+                        font-size: 2rem;
+                    }
+                    & span {
+                        font-weight: 500;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+                & .modal_icon {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    font-size: 2rem;
+                    padding: 1rem;
+                    padding-right: 2rem;
+                }
+            }
+            & .modal_body {
+                background-color: #fff;
+                margin-top: 5rem;
+                & .checkout-modal {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    & .text-bold {
+                        font-size: 2.2rem;
+                        font-weight: 600;
+                    }
+                    & .cusInfo {
+                        padding-right: 5rem;
+                        & td {
+                            height: 5rem;
+                            width: 18rem;
+                        }
+                    }
+                    & .cartInfo {
+                        & th,
+                        td {
+                            text-align: center;
+                            height: 5rem;
+                        }
+                        & .name {
+                            width: 40rem;
+                        }
+                        & .qty {
+                            width: 10rem;
+                        }
+                        & .price {
+                            width: 20rem;
+                            color: red;
+                            ;
+                        }
+                        & .pricet {
+                            & p {
+                                color: red;
+                            }
+                        }
+                    }
+                }
+                & .btn {
+                    padding: 2rem;
+                    & button {
+                        background-color: $primary-color-hover;
+                        width: calc(100% - 4rem);
+                        margin: 2rem;
+                        line-height: 4rem;
+                        font-size: 2rem;
+                        font-weight: 500;
+                        border: none;
+                        border-radius: .5rem;
+                        &:hover {
+                            background-color: $primary-color-hover2;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+            & .modal_footer {
+                & button {
+                    background-color: $primary-color-hover;
+                    width: calc(100% - 4rem);
+                    margin: 2rem;
+                    line-height: 4rem;
+                    font-size: 2rem;
+                    font-weight: 500;
+                    border: none;
+                    border-radius: .5rem;
+                    &:hover {
+                        background-color: $primary-color-hover2;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        top: -20%;
+    }
+    to {
+        top: 10%;
+    }
+}

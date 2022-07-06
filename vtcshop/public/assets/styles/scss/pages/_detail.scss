@@ -1,0 +1,107 @@
+.detail_content {
+    margin-top: 16rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    & .detail_body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15rem;
+        & .detail_img {
+            & .slideshow-container {
+                margin: 2rem;
+                & .mySlides {
+                    display: none;
+                    & img {
+                        width: 55rem;
+                        height: 55rem;
+                        vertical-align: middle;
+                    }
+                }
+            }
+            & .img_slide {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                width: 30rem;
+                margin: 2rem auto;
+                gap: 5rem;
+                & .active {
+                    background-color: rgba(235, 169, 138, 0.34);
+                }
+                & img {
+                    width: 7rem;
+                    height: 7rem;
+                    &:hover {
+                        border: thin solid rgba(235, 169, 138, 0.34);
+                    }
+                }
+            }
+            & .fadee {
+                animation-name: fade;
+                animation-duration: 1s;
+            }
+        }
+        & .detail_info {
+            padding-top: 5rem;
+            padding-right: 1rem;
+            &_name {
+                font-size: 4rem;
+                padding-bottom: 6rem;
+                font-weight: $font-weight;
+            }
+            & ul {
+                font-size: 2rem;
+                & .main_title {
+                    font-size: 3.5rem;
+                    padding-bottom: 2rem;
+                }
+            }
+            &_title {
+                display: inline-block;
+                font-size: 2.3rem;
+                font-weight: $font-weight;
+                padding-bottom: 1rem;
+                padding-right: 1rem;
+                & a {
+                    color: #ec006e;
+                }
+            }
+            &_price {
+                font-size: 2.5rem;
+                font-weight: $font-weight;
+                padding-top: 2rem;
+                padding-right: 1rem;
+                & span {
+                    color: $primary-color-hover;
+                }
+            }
+            & a {
+                & .btn-buy {
+                    background-color: $primary-color-hover;
+                    margin-top: 5rem;
+                    height: 6rem;
+                    width: 15rem;
+                    font-size: 2.5rem;
+                    color: #fff;
+                    border: none;
+                    border-radius: .5rem;
+                    font-weight: 500;
+                    &:hover {
+                        color: #000;
+                        background-color: #f5d02d;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .3
+    }
+    to {
+        opacity: 1
+    }
+}

@@ -1,0 +1,137 @@
+.wrapperr {
+    background-color: #fff;
+    width: 100%;
+    height: 100vh;
+    .checkout_content {
+        border-radius: 1rem;
+        width: 131rem;
+        margin: 0 auto;
+        height: 100%;
+        & .breadcrumb {
+            padding: 10px 16px;
+            list-style: none;
+            background-color: #eee;
+            & li {
+                display: inline;
+                font-size: 18px;
+                &+li::before {
+                    padding: 8px;
+                    color: black;
+                    content: "/\00a0";
+                }
+                & a {
+                    color: #0275d8;
+                    text-decoration: none;
+                    &:hover {
+                        color: #01447e;
+                    }
+                }
+            }
+        }
+        &_header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            & .icon {
+                font-size: 10rem;
+            }
+            & .header_text {
+                font-weight: 600;
+                font-size: 3rem;
+                letter-spacing: 0.2rem;
+            }
+        }
+        &_body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 5rem;
+            gap: 2rem;
+            & .cus-text,
+            .cart-text {
+                font-size: 2rem;
+                font-weight: 550;
+                margin-bottom: 2rem;
+            }
+            & .cus-info {
+                position: relative;
+                & label {
+                    display: block;
+                    margin: 1rem .5rem 0 0;
+                }
+                & input {
+                    box-sizing: border-box;
+                    width: 100%;
+                    height: 4rem;
+                    margin-bottom: 2rem;
+                    padding-left: 1rem;
+                }
+                & .error {
+                    position: absolute;
+                    color: $primary-color-hover;
+                    font-style: italic;
+                    font-size: 1.4rem;
+                    margin-top: -2rem;
+                }
+                & .btn-order {
+                    background-color: lightseagreen;
+                    width: 100%;
+                    height: 4rem;
+                    text-align: center;
+                    line-height: 4rem;
+                    opacity: .8;
+                    &:hover {
+                        opacity: 1;
+                        cursor: pointer;
+                    }
+                    & .order-text {
+                        font-weight: 600;
+                        font-size: 2rem;
+                    }
+                }
+            }
+            & .cart-info {
+                margin-bottom: 5rem;
+                & .table-cart {
+                    & .product-items {
+                        height: 10rem;
+                        & .product-thumbnail {
+                            width: 10rem;
+                            & img {
+                                width: 10rem;
+                                height: 10rem;
+                                align-items: center;
+                            }
+                        }
+                        & .product-name {
+                            width: 30rem;
+                            height: 10rem;
+                            text-align: center;
+                            vertical-align: middle;
+                        }
+                        & .product-quantity {
+                            width: 10rem;
+                            text-align: center;
+                            vertical-align: middle;
+                        }
+                        & .product-price {
+                            width: 15rem;
+                            text-align: center;
+                            vertical-align: middle;
+                            color: $primary-color-hover;
+                        }
+                    }
+                    & .product-totalPrice {
+                        & .totalPrice {
+                            font-size: 2rem;
+                            font-weight: 600;
+                            line-height: 15rem;
+                        }
+                        & .price {
+                            color: $primary-color-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
