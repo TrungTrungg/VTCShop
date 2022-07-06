@@ -25,6 +25,7 @@
                     <th class="c4">Tổng số sản phẩm</th>
                     <th class="c5">Tổng số tiền</th>
                     <th class="c6">Thời gian mua hàng</th>
+                    <th class="c6">Action</th>
                 </tr>
             </thead>
             <tbody class="table-scroll" id="dataPage">
@@ -36,6 +37,9 @@
                     <td class="c4"><?php echo $order['totalQty']; ?></td>
                     <td class="c5"><?php echo number_format($order['totalPrice'],0,' ','.'); ?> VND</td>
                     <td class="c6"><?php echo $order['order_date']; ?></td>
+                    <td class="c6"><?php echo $order['order_date']; ?></td>
+                    <td class="c7 btn-edit">
+                        <a href="<?php echo _WEB_ROOT; ?>/admin/order/detail?order_id=<?php echo $order['id']; ?>">Xem</a></td>
                 </tr>
                 <?php $num++; endforeach; ?>
             </tbody>

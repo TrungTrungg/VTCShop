@@ -77,6 +77,11 @@
             return $this->db ->query($query)->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function getProductByIdC($product_id) {
+            $query = "SELECT * FROM products WHERE id = '$product_id'";
+            return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function editProduct($id,$name,$price,$quantity,$sold) {
             $query = "UPDATE products SET name = '$name', price = '$price', quantity = '$quantity', sold = '$sold' WHERE id = '$id'";
             return $this->db ->query($query)->fetchAll(PDO::FETCH_ASSOC);

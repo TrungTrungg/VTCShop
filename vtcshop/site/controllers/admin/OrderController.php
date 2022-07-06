@@ -19,6 +19,12 @@
         }
 
         public function detail() {
+            if(isset($_GET['order_id'])) {
+                $order_id = $_GET['order_id'];
+                $data = $this->orderModel->getOrderById($order_id);
+                $this->data['subcontent']['data'] = $data[0];
+                $this->data['subcontent']['order_detail'] = $this->orderModel->getOrderDetail($order_id);
+            }
             $this->data['content'] = 'orders/detail';
             $this->data['subcontent']['title'] = 'Chi tiết đơn hàng';
             $this->render('layouts/admin_layout', $this->data);
