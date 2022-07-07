@@ -45,9 +45,28 @@
                     <td class="c4">'.$order['totalQty'].'</td>
                     <td class="c5">'.number_format($order['totalPrice'],0,' ','.').' VND</td>
                     <td class="c6">'.$order['order_date'].'</td>
+                    <td class="c7 btn-edit">
+                        <a href="'._WEB_ROOT.'/admin/order/detail?order_id='.$order['id'].'">Xem</a></td>
                     </tr>';
                     $numm +=1;
                 }
+            }
+        }
+
+        public function update_status() {
+            $req = new Request();
+            $data = $req->getFields();
+            if(isset($data['status']) && isset($data['order_id'])) {
+                $status = $data['status'];
+                $order_id = $data['order_id'];
+                if($status == 0) {
+                    $this->orderModel->updateStatus(1,$order_id);
+                    echo '<div class="order-status fin" id="btn-edit">Đã hoàn thành</div>';
+                }else {
+                    $this->orderModel->updateStatus(0,$order_id);
+                    echo '<div class="order-status" id="btn-edit">Chưa hoàn thành</div>';
+                }
+
             }
         }
     }

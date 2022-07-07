@@ -66,7 +66,7 @@
         }
         
         public function editUser($id,$fullname,$email,$phone_number,$address,$password,$role_id) {
-            $query = "UPDATE  users SET fullname = '$fullname', 
+            $query = "UPDATE users SET fullname = '$fullname', 
                                             email = '$email' , 
                                             phone_number = '$phone_number' , 
                                             address = '$address' , 

@@ -88,7 +88,7 @@
                 </div>
                 <div class="modal_content_footer">
                     <div class="btn-close" id="btn-close-<?php echo $user['id']; ?>">Hủy</div>
-                    <div class="btn-delete" id="btn-delete-<?php echo $user['id']; ?>"><a href="<?php echo _WEB_ROOT; ?>/admin/user">Xác nhận</a></div>
+                    <div class="btn-delete" id="btn-delete-<?php echo $user['id']; ?>">Xác nhận</div>
                 </div>
             </div>
         </div>
@@ -107,12 +107,12 @@
                 });
                 $('#btn-delete-<?php echo $user['id']; ?>').click(function() {
                     let id = <?php echo $user['id']; ?>;
-                    console.log(id);
                     $.ajax({
                         url: '<?php echo _WEB_ROOT; ?>/admin/user/deleteUser',
                         method: 'GET',
                         data: {id:id}
                     })
+                    window.location.reload();
                 })
             <?php endforeach; ?>
 

@@ -22,7 +22,7 @@
                     <p style="display:inline-block; margin-bottom: 3rem;"><?php echo $value; ?></p>
                 </div>
                 <?php endforeach; ?>
-                <?php echo $order_data['status'] == 0 ? '<div class="order-status">Chưa hoàn thành</div>' : '<div class="order-status fin">Hoàn thành</div>'; ?>
+                <div id="status"><?php echo $order_data['status'] == 0 ? '<div class="order-status" id="btn-edit">Chưa hoàn thành</div>' : '<div class="order-status fin" id="btn-edit">Đã hoàn thành</div>'; ?></div>
             </div>
             <div class="body-right">
                 <table class="table-cart">
@@ -59,3 +59,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#btn-edit').click(function() {
+            $.ajax({
+                url: "<?php echo _WEB_ROOT; ?>/admin/order/update_status",
+                method: "GET",
+                data: {status:<?php echo $order_data['status'] ?>, order_id:<?php echo $order_data['order_id'] ?>},
+                success: function(data) {
+                    $('#status').html(data);
+                    window.location.reload();
+                }
+            })
+        })
+    })
+</script>

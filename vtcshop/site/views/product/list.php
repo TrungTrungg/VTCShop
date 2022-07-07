@@ -86,7 +86,7 @@
                         </div>
                         <div class="modal_content_footer">
                             <div class="btn-close" id="btn-close-<?php echo $product['id']; ?>">Hủy</div>
-                            <div class="btn-delete" id="btn-delete-<?php echo $product['id']; ?>"><a href="<?php echo _WEB_ROOT; ?>/admin/product">Xác nhận</a></div>
+                            <div class="btn-delete" id="btn-delete-<?php echo $product['id']; ?>">Xác nhận</div>
                         </div>
                     </div>
                 </div>
@@ -113,6 +113,7 @@
                     method: 'GET',
                     data: {id:id}
                 });
+                window.location.reload();
             });
         <?php endforeach; ?>
 

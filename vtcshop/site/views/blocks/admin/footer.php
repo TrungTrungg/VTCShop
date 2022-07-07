@@ -5,6 +5,6 @@
             <a href="https://www.instagram.com/trungtrung103/" target="_blank"><i class="fa fa-instagram icon"></i></a>
             <a href="https://github.com/trungtrungg" target="_blank"><i class="fa fa-github icon"></i></a>
         </div>
-        <p>Copyright &copy; 2020 Design by TrungTrung & Developed by TrungTrung</p>
+        <p>Copyright &copy; 2020</p>
     </div>
 </div>

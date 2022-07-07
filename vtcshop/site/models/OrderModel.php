@@ -52,5 +52,15 @@
                                         LIMIT $from, $num";
             return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
         }
+
+        public function updateStatus($status,$order_id) {
+            $query = "UPDATE orders SET status = $status WHERE id = '$order_id'";
+            return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getStatus($order_id) {
+            $query = "SELECT status FROM orders WHERE id = '$order_id'";
+            return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>
