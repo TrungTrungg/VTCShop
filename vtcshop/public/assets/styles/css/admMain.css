@@ -565,7 +565,8 @@ body {
 }
 
 .dashboard_content_table .btn-delete,
-.dashboard_content_table .btn-edit {
+.dashboard_content_table .btn-edit,
+.dashboard_content_table .btn-view {
     display: inline;
     background-color: #c9302c;
     color: #fff;
@@ -578,13 +579,18 @@ body {
 }
 
 .dashboard_content_table .btn-delete:hover,
-.dashboard_content_table .btn-edit:hover {
+.dashboard_content_table .btn-edit:hover,
+.dashboard_content_table .btn-veiw:hover {
     cursor: pointer;
     opacity: 1;
 }
 
 .dashboard_content_table .btn-edit {
     background-color: #26ca26;
+}
+
+.dashboard_content_table .btn-view {
+    background-color: #2163df;
 }
 
 .dashboard_content_table .btn-edit a {

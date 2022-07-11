@@ -37,6 +37,18 @@
                 $from = ($pageNumber - 1) * $num;
                 $pageResult = $this->orderModel->getOrderPerPage($from,$num);
                 $numm = ($num * $pageNumber) - 7;
+                echo '<table class="dashboard_content_table">
+                        <thead>
+                            <tr>
+                                <th class="c1">STT</th>
+                                <th class="c2">Mã đơn hàng</th>
+                                <th class="c3">Họ tên</th>
+                                <th class="c4">Tổng số sản phẩm</th>
+                                <th class="c5">Tổng số tiền</th>
+                                <th class="c6">Thời gian mua hàng</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-scroll">';
                 foreach($pageResult as $order) {
                 echo '<tr>
                     <td class="c1">'.$numm.'</td>
@@ -45,11 +57,12 @@
                     <td class="c4">'.$order['totalQty'].'</td>
                     <td class="c5">'.number_format($order['totalPrice'],0,' ','.').' VND</td>
                     <td class="c6">'.$order['order_date'].'</td>
-                    <td class="c7 btn-edit">
+                    <td class="c7 btn-view">
                         <a href="'._WEB_ROOT.'/admin/order/detail?order_id='.$order['id'].'">Xem</a></td>
                     </tr>';
                     $numm +=1;
                 }
+                echo '</tbody>';
             }
         }
 

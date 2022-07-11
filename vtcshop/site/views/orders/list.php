@@ -16,34 +16,38 @@
                 </li>
             </ul>
         </div>
-        <table class="dashboard_content_table">
-            <thead>
-                <tr>
-                    <th class="c1">STT</th>
-                    <th class="c2">Mã đơn hàng</th>
-                    <th class="c3">Họ tên</th>
-                    <th class="c4">Tổng số sản phẩm</th>
-                    <th class="c5">Tổng số tiền</th>
-                    <th class="c6">Thời gian mua hàng</th>
-                    <th class="c6">Action</th>
-                </tr>
-            </thead>
-            <tbody class="table-scroll" id="dataPage">
-                <?php $num = 1; foreach($orderList as $order): ?>
-                <tr>
-                    <td class="c1"><?php echo $num; ?></td>
-                    <td class="c2"><?php echo $order['id']; ?></td>
-                    <td class="c3"><?php echo $order['fullname']; ?></td>
-                    <td class="c4"><?php echo $order['totalQty']; ?></td>
-                    <td class="c5"><?php echo number_format($order['totalPrice'],0,' ','.'); ?> VND</td>
-                    <td class="c6"><?php echo $order['order_date']; ?></td>
-                    <td class="c6"><?php echo $order['order_date']; ?></td>
-                    <td class="c7 btn-edit">
-                        <a href="<?php echo _WEB_ROOT; ?>/admin/order/detail?order_id=<?php echo $order['id']; ?>">Xem</a></td>
-                </tr>
-                <?php $num++; endforeach; ?>
-            </tbody>
-        </table>
+        <div class="search">
+                <input type="text" placeholder="tìm..." id="search">
+        </div>
+        <div id="dataPage">
+            <table class="dashboard_content_table">
+                <thead>
+                    <tr>
+                        <th class="c1">STT</th>
+                        <th class="c2">Mã đơn hàng</th>
+                        <th class="c3">Họ tên</th>
+                        <th class="c4">Tổng số sản phẩm</th>
+                        <th class="c5">Tổng số tiền</th>
+                        <th class="c6">Thời gian mua hàng</th>
+                    </tr>
+                </thead>
+                <tbody class="table-scroll">
+                    <?php $num = 1; foreach($orderList as $order): ?>
+                    <tr>
+                        <td class="c1"><?php echo $num; ?></td>
+                        <td class="c2"><?php echo $order['id']; ?></td>
+                        <td class="c3"><?php echo $order['fullname']; ?></td>
+                        <td class="c4"><?php echo $order['totalQty']; ?></td>
+                        <td class="c5"><?php echo number_format($order['totalPrice'],0,' ','.'); ?> VND</td>
+                        <td class="c6"><?php echo $order['order_date']; ?></td>
+                        <td class="c6"><?php echo $order['order_date']; ?></td>
+                        <td class="c7 btn-view">
+                            <a href="<?php echo _WEB_ROOT; ?>/admin/order/detail?order_id=<?php echo $order['id']; ?>">Xem</a></td>
+                    </tr>
+                    <?php $num++; endforeach; ?>
+                </tbody>
+            </table>
+        </div>
         <div class="cate_footer">
             <div class="pagination">
                 <div class="pagination-container">
@@ -88,5 +92,17 @@
             });
         });
         <?php endfor; ?>
+
+        $("#search").keyup(function() {
+            let keyword = $("#search").val();
+            $.ajax({
+                url: "<?php echo _WEB_ROOT; ?>/admin/product/findOrder",
+                method: "GET",
+                data: {keyword:keyword},
+                success: function(data) {
+                    $("#dataPage").html(data);
+                }
+            });
+        });
     });
 </script>
