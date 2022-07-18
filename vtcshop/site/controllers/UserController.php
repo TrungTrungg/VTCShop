@@ -14,7 +14,6 @@
             if(isset($data['username']) && isset($data['password'])) {
                 $username = $data['username'];
                 $password = md5($data['password']);
-                
                 $dataUser = $this->modelUser->loginUser($username,$password);
             if($dataUser == null || $username == "") {
                 echo    '<div class="wrapper">

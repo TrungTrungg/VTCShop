@@ -325,9 +325,14 @@
                 $email = $_POST['email'];
                 $phone_number = $_POST['phone_number'];
                 $address = $_POST['address'];
-                $password = md5($_POST['password']);
                 $role_id = $_POST['role_id'];
-                $this->userModel->editUser($id,$fullname,$email,$phone_number,$address,$password,$role_id);
+                if($_POST['password'] != "")
+                {
+                    $password = md5($_POST['password']);
+                    $this->userModel->editUser($id,$fullname,$email,$phone_number,$address,$password,$role_id);
+                }else {
+                    $this->userModel->editUserWithoutPassword($id,$fullname,$email,$phone_number,$address,$role_id);
+                }
                 echo '<div class="modalE open">
                         <div class="modal_content">
                             <div class="modal_content_header">Thông báo</div>

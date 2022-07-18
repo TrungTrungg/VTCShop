@@ -8,7 +8,7 @@
 <div class="wrapper">
         <div class="login">
             <div class="login_content">
-                <form>
+                <form method="POST">
                     <div class="login_content_header">
                         <h1>Đăng nhập</h1>
                     </div>

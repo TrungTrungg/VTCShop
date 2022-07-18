@@ -137,7 +137,6 @@
             let address = $("#address").val();
             let password = $("#password").val();
             let role_id = $('#role').val();
-            console.log(id,fullname,email,password,phone_number,address,role_id);
             $.ajax({
                 url: "<?php echo _WEB_ROOT; ?>/admin/user/processEditUser",
                 method: "POST",

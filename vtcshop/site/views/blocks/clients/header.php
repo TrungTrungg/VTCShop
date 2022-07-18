@@ -3,7 +3,7 @@
         <div class="header_content">
             <div class="header_content_logo">
                 <a href="<?php echo _WEB_ROOT; ?>/home">
-                    <p>CVT</p>
+                    <p>VTC</p>
                 </a>
             </div>
             <div class="header_content_search">

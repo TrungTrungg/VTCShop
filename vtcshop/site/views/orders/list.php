@@ -96,7 +96,7 @@
         $("#search").keyup(function() {
             let keyword = $("#search").val();
             $.ajax({
-                url: "<?php echo _WEB_ROOT; ?>/admin/product/findOrder",
+                url: "<?php echo _WEB_ROOT; ?>/admin/order/findOrder",
                 method: "GET",
                 data: {keyword:keyword},
                 success: function(data) {

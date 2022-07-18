@@ -53,6 +53,17 @@
             return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function findOrder($keyword) {
+            $query = "SELECT orders.*, SUM(order_details.price) as totalPrice,
+                                        SUM(order_details.quantity) as totalQty
+                                        FROM orders, order_details
+                                        WHERE orders.id LIKE '%$keyword%'
+                                        GROUP BY orders.id
+                                        ORDER BY orders.id DESC
+                                        LIMIT 0, 8";
+            return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function updateStatus($status,$order_id) {
             $query = "UPDATE orders SET status = $status WHERE id = '$order_id'";
             return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
