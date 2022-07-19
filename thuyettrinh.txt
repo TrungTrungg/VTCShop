@@ -1,0 +1,20 @@
+Sơ đồ thể hiện chức năng của người quản trị: cho phép thêm xóa sửa người dùng, sản phẩm. Với người dùng có chức năng phân quyền. Với đơn hàng có chức năng kiểm duyệt (hoàn thành hoặc chưa hoàn thành). Trang dashboard sẽ thống kê số lượng đơn hàng, người dùng, sản phẩm và thông tin đăng nhập của quản trị viên gần nhất.
+
+Danh sách sẽ truy vấn (SELECT) bảng user và sắp xếp theo thứ tự quyền của user( admin - người dùng - khách).
+-Chức năng Xóa: dựa vào id của user sẽ gửi lên server và xử lý trong action deleteUser bằng cách  dùng lệnh DELETE để xóa user đó trong bảng user trên database Chức năng sửa: người quản trị sẽ nhấn vào nút sửa trên user cần sửa, sau đó chuyển hướng sang trang editUser. Trong trang editUser người quản trị sẽ phải điền thông tin vào form những trường cần sửa (đối với mật khẩu, nếu không điền sẽ vẫn giữ mật khẩu cũ), có thể phân quyền thông qua trường quyền hạn của form và gửi lên server bằng kỹ thuật AJAX xử lý trong action processEditUser
+
+Quá trình đăng ký:
+- Người dùng sẽ nhập thông tin cá nhân: tên tài khoản, email, số điện thoại, mật khẩu, họ tên và nhấn nút  đăng ký, sau đó form sẽ được gửi lên server và check xem có tồn tại trong database hay không từ đó sẽ trả về thông báo tạo tài khoản thất bại hoặc nếu thành công thì sẽ khởi tạo dữ liệu cho người dùng mới và chuyển hướng sang trang đăng nhập để đăng nhập vào website 
+Quá trình đăng nhập:
+- Người dùng sẽ nhập thông tin đăng nhập: tài khoản, mật khẩu và nhấn nút đăng nhập. Sau đó  form sẽ được gửi lên server và check xem thông tin có đúng như trong database không, nếu đúng sẽ tạo ra 1 token tạo bởi username và thời gian hiện tại được mã hóa theo thuật toán MD5 Hash lưu vào database và cookie để lần đăng nhập tiếp theo sẽ lưu thông tin người dùng thông tin  người dùng sẽ được lưu vào biến session. Nếu đã tồn tại session của người dùng thì khi vào trang login người dùng sẽ được chuyển hướng vào trang home của website.
+- Quản lý người dùng: người dùng khi đăng ký, đăng nhập sẽ phải nhập dữ liệu qua form  và tác động đến bảng user trong database và phải bảo đảm đúng logic. Đối với quản trị viên  có thể sửa đổi, thêm hoặc xóa người dùng  dựa vào bảng user và phân quyền dựa vào bảng role (id = 1: admin, id = 2: người dùng, id = 3: khách)
+
+Visual Studio Code: một trình soạn thảo mã nguồn mở nhanh, nhẹ, đa nền tảng, nhiều tính năng và đặc biệt miễn phí dành cho nhiều hệ điều hành được phát triển bởi Microsoft.
+
+PHP: Ngôn ngữ lập trình dùng để xử lý các chức từ server.
+Javascript: Ngôn ngữ lập trình để xây dựng các hiệu ứng tương tác (VD: đóng mở modal, các event khi tương tác với trang web), thư viện JQuery để dùng kỹ thuật AJAX.
+HTML: ngôn ngữ đánh dấu dùng để Xây dựng và cấu trúc lại các thành phần có trong website
+CSS: tìm và định dạng các phần tử định dạng bởi nn HTML, có thiết kế đơn giản, xử lý giao diện của trang web.
+MySQL: hệ quản trị cơ sở dữ liệu mã nguồn mở dựa trên ngôn ngữ truy vấn có cấu trúc (SQL) - tương tác với cơ sở dữ liệu
+
+
