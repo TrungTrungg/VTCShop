@@ -14,7 +14,9 @@
             return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
         }
         public function getProductPerPage($from,$num) {
-            $query = "SELECT products.*, categories.name as brand FROM products JOIN product_categories
+            $query = "SELECT products.*, categories.name as brand 
+                                            FROM products 
+                                            JOIN product_categories
                                             ON products.id = product_categories.product_id
                                             JOIN categories
                                             ON product_categories.category_id = categories.id
@@ -69,7 +71,9 @@
         }
 
         public function getProductById($id) {
-            $query = "SELECT products.*, categories.name as brand, categories.id as cat_id FROM products JOIN product_categories
+            $query = "SELECT products.*, categories.name as brand, categories.id as cat_id 
+                                                                FROM products 
+                                                                JOIN product_categories
                                                                 ON products.id = product_categories.product_id
                                                                 JOIN categories
                                                                 ON product_categories.category_id = categories.id
