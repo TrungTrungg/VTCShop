@@ -10,8 +10,8 @@
             $this->data['content'] = 'home/index';
             
             $this->data['subcontent']['title'] = 'CVT SHOP';
-            $this->data['subcontent']['brandData'] = $this->modelHome->getListBrand();
-            $this->data['subcontent']['navright'] = '
+            $this->data['subcontent']['brand_data'] = $this->modelHome->getListBrand();
+            $this->data['subcontent']['nav-right'] = '
             <div class="nav_right">
                             <a href="#brand">
                                 <i class="nav_icon far fa-copyright"></i>Thương hiệu</a>
@@ -33,10 +33,10 @@
                                 <i class="nav_icon fas fa-mouse"></i>Chuột siêu rẻ</a>
                         </div>
             ';
-            $this->data['subcontent']['laptopData'] = $this->modelHome->getListLaptop();
-            $this->data['subcontent']['pcData'] = $this->modelHome->getListPC();
-            $this->data['subcontent']['keyboardData'] = $this->modelHome->getListKeyboard();
-            $this->data['subcontent']['mouseData'] = $this->modelHome->getListMouse();
+            $this->data['subcontent']['laptop_data'] = $this->modelHome->getListLaptop();
+            $this->data['subcontent']['pc_data'] = $this->modelHome->getListPC();
+            $this->data['subcontent']['keyboard_data'] = $this->modelHome->getListKeyboard();
+            $this->data['subcontent']['mouse_data'] = $this->modelHome->getListMouse();
             $this->render('layouts/client_layout', $this->data);
 
         }

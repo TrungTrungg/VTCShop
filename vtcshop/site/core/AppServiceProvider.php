@@ -26,13 +26,13 @@ class AppServiceProvider extends ServiceProvider {
                 }
             }
             if(isset($_SESSION['cart'])) {
-                $dataCart = $_SESSION['cart'];
-                setcookie('dataCart', json_encode($dataCart), time() + 24 * 60 * 60, '/');
+                $data_cart = $_SESSION['cart'];
+                setcookie('data_cart', json_encode($data_cart), time() + 24 * 60 * 60, '/');
             }
             if(!isset($_SESSION['cart'])) {
-                if(isset($_COOKIE['dataCart'])) {
-                    $dataCart = json_decode($_COOKIE['dataCart'], true);
-                    $_SESSION['cart'] = $dataCart;
+                if(isset($_COOKIE['data_cart'])) {
+                    $data_cart = json_decode($_COOKIE['data_cart'], true);
+                    $_SESSION['cart'] = $data_cart;
                 }
             }
             

@@ -980,6 +980,7 @@ body {
     position: absolute;
     top: 20rem;
     font-size: 1.5rem;
+    text-align: center;
 }
 
 .content .product_main .product_body .product_item p {

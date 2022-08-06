@@ -8,7 +8,7 @@
             </div>
             <div class="header_content_search">
                 <form class="header_content_search" action="<?php echo _WEB_ROOT; ?>/category" method="GET">
-                    <input type="text" id="search" value ="" name="nameSearch" class="search_inputField" placeholder="Bạn tìm gì..." />
+                    <input type="text" id="search" value ="" name="keyword" class="search_inputField" placeholder="Bạn tìm gì..." />
                     <div class="search_suggestions" id="search_suggestions">
                     </div>
                     <button class="search_button" type="submit">
@@ -85,7 +85,7 @@
                         </li>
                     </ul>
                 </div>
-                <?php echo isset($this->data['subcontent']['navright'])?$this->data['subcontent']['navright']:false; ?>
+                <?php echo isset($this->data['subcontent']['nav-right'])?$this->data['subcontent']['nav-right']:false; ?>
             </div>
         </div>
     </div>

@@ -1,3 +1,12 @@
+<?php
+    $brand_data = $this->data['subcontent']['brand_data'];
+    $laptop_data = $this->data['subcontent']['laptop_data'];
+    $pc_data = $this->data['subcontent']['pc_data'];
+    $keyboard_data = $this->data['subcontent']['keyboard_data'];
+    $mouse_data = $this->data['subcontent']['mouse_data'];
+?>
+
+
 <div class="wrapper">
     <div class="content">
         <section id="brand" class="brand_main">
@@ -6,11 +15,11 @@
             </div>
             <div class="brand_body">
                 <div class="brand_item">
-                    <?php foreach($this->data['subcontent']['brandData'] as $brandItem):  ?>
+                    <?php foreach($brand_data as $brand_item):  ?>
                         <div class="brand_img">
-                            <a href="<?php echo _WEB_ROOT; ?>/category?category=<?php echo  $brandItem['name']; ?>">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/Brands/<?php echo $brandItem['name']; ?>.png" 
-                                    alt="<?php echo $brandItem['name']; ?>">
+                            <a href="<?php echo _WEB_ROOT; ?>/category?category=<?php echo  $brand_item['name']; ?>">
+                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/Brands/<?php echo $brand_item['name']; ?>.png" 
+                                    alt="<?php echo $brand_item['name']; ?>">
                             </a>
                         </div>
                     <?php endforeach; ?>
@@ -23,15 +32,15 @@
                 <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/banner-laptop.png" alt="bannerLaptop">
             </div>
             <div class="outslaptop_body">
-                <?php foreach($this->data['subcontent']['laptopData'] as $laptopItem): ?>
-                    <a class="outslaptop_item" href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $laptopItem['name']; ?>">
+                <?php foreach($laptop_data as $laptop_item): ?>
+                    <a class="outslaptop_item" href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $laptop_item['name']; ?>">
                         <div class="laptop_img">
-                            <img class="outslaptop_img <?php echo $laptopItem['is_trend'] == 1 ? 'img' : false; ?>" 
-                                    src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $laptopItem['name'] ?>.png" 
-                                        alt="<?php echo $laptopItem['name'] ?>" />
+                            <img class="outslaptop_img <?php echo $laptop_item['is_trend'] == 1 ? 'img' : false; ?>" 
+                                    src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $laptop_item['name'] ?>.png" 
+                                        alt="<?php echo $laptop_item['name'] ?>" />
                                         </div>
-                                        <h2 class="outslaptop_text"><?php echo $laptopItem['name'] ?></h2>
-                                        <p class="outslaptop_price"><?php echo number_format($laptopItem['price'],0," ","."); ?> VND</p>
+                                        <h2 class="outslaptop_text"><?php echo $laptop_item['name'] ?></h2>
+                                        <p class="outslaptop_price"><?php echo number_format($laptop_item['price'],0," ","."); ?> VND</p>
                     </a>
                 <?php endforeach; ?>
         </section>
@@ -44,13 +53,13 @@
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
                         <?php for($i = 0; $i < 8; $i++): 
-                            $pcItem = $this->data['subcontent']['pcData'][$i]; ?>
+                            $pc_item = $pc_data[$i]; ?>
                             <div class="swiper-slide">
-                                <a href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $pcItem['name']; ?>">
-                                    <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $pcItem['name']; ?>.png" 
-                                            alt="<?php echo $pcItem['name']; ?>">
-                                    <h2 class="outslaptop_text"><?php echo $pcItem['name']; ?></h2>
-                                    <p class="outslaptop_price"><?php echo number_format($pcItem['price'],0," ","."); ?> VND</p>
+                                <a href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $pc_item['name']; ?>">
+                                    <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $pc_item['name']; ?>.png" 
+                                            alt="<?php echo $pc_item['name']; ?>">
+                                    <h2 class="outslaptop_text"><?php echo $pc_item['name']; ?></h2>
+                                    <p class="outslaptop_price"><?php echo number_format($pc_item['price'],0," ","."); ?> VND</p>
                                 </a>
                             </div>
                         <?php endfor; ?>
@@ -66,13 +75,13 @@
                 </div>
                 <div class="product_body">
                     <?php for($i = 0 ; $i < 5 ; $i++):
-                            $keyboardItem = $this->data['subcontent']['keyboardData'][$i] ?>
+                            $keyboard_item = $keyboard_data[$i] ?>
                         <div class="product_item">
-                            <a href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $keyboardItem['name']; ?>">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $keyboardItem['name']; ?>.png" 
-                                        alt="<?php echo $keyboardItem['name']; ?>" />
-                                <h2 class="product_text_lg"><?php echo $keyboardItem['name']; ?></h2>
-                                <p class="product_price"><?php echo number_format($keyboardItem['price'],0," ","."); ?> VND</p>
+                            <a href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $keyboard_item['name']; ?>">
+                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $keyboard_item['name']; ?>.png" 
+                                        alt="<?php echo $keyboard_item['name']; ?>" />
+                                <h2 class="product_text_lg"><?php echo $keyboard_item['name']; ?></h2>
+                                <p class="product_price"><?php echo number_format($keyboard_item['price'],0," ","."); ?> VND</p>
                             </a>
                         </div>
                     <?php endfor; ?>
@@ -87,13 +96,13 @@
                 </div>
                 <div class="product_body">
                     <?php for($i = 0 ; $i < 5 ; $i++):
-                            $mouseItem = $this->data['subcontent']['mouseData'][$i] ?>
+                            $mouse_item = $mouse_data[$i] ?>
                         <div class="product_item">
-                            <a href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $mouseItem['name']; ?>">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $mouseItem['name']; ?>.png" 
-                                        alt="<?php echo $mouseItem['name']; ?>" />
-                                <h2 class="product_text_lg"><?php echo $mouseItem['name']; ?></h2>
-                                <p class="product_price"><?php echo number_format($mouseItem['price'],0," ","."); ?> VND</p>
+                            <a href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $mouse_item['name']; ?>">
+                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $mouse_item['name']; ?>.png" 
+                                        alt="<?php echo $mouse_item['name']; ?>" />
+                                <h2 class="product_text_lg"><?php echo $mouse_item['name']; ?></h2>
+                                <p class="product_price"><?php echo number_format($mouse_item['price'],0," ","."); ?> VND</p>
                             </a>
                         </div>
                     <?php endfor; ?>

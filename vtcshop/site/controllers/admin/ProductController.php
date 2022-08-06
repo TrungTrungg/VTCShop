@@ -14,8 +14,7 @@
             $from = 0;
             $num = 8;
             $this->data['subcontent']['product'] = $this->productModel->getProductPerPage($from,$num);
-            $allProduct = $this->productModel->getAllProduct();
-            $productCount = count($allProduct);
+            $productCount = $this->productModel->countAllProd()['prod_count'];
             $this->data['subcontent']['pageTotal'] = ceil($productCount / 8);
             $this->render('layouts/admin_layout', $this->data);
         }
@@ -101,7 +100,7 @@
             $this->data['content'] = 'product/addProduct';
             $this->data['subcontent']['title'] = 'Thêm sản phẩm';
             $this->data['subcontent']['brand'] = $this->productModel->getProductBrand();
-            $this->data['subcontent']['cat'] = $this->productModel->getProductCat();
+            $this->data['subcontent']['cat'] = $this->productModel->getProductCate();
             $this->render('layouts/admin_layout', $this->data);
         }
         public function processAddProduct() {
@@ -115,7 +114,7 @@
                 if($checkProduct == null) {
                 $this->productModel->addProduct($name,$price,$qty);
                 $getProduct = $this->productModel->getLastProduct();
-                $product_id = $getProduct[0]['MAX(id)'];
+                $product_id = $getProduct[0]['last_prod'];
                 $this->categoryModel->addProductCategories($product_id, $cat1);
                 $this->categoryModel->addProductCategories($product_id, $cat2);
                 echo '<div class="modalP open">
@@ -276,7 +275,7 @@
             $this->data['content'] = 'product/editProduct';
             $this->data['subcontent']['title'] = 'Sửa thông tin sản phẩm';
             $this->data['subcontent']['brand'] = $this->productModel->getProductBrand();
-            $this->data['subcontent']['cat'] = $this->productModel->getProductCat();
+            $this->data['subcontent']['cat'] = $this->productModel->getProductCate();
             if(isset($data['id'])) {
                 $id = $data['id'];
                 $product = $this->data['subcontent']['product'] = $this->productModel->getProductById($id);

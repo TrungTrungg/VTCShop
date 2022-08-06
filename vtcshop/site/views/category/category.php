@@ -1,28 +1,26 @@
 <?php 
-$request = new Request();
-$data = $request->getFields();
-if(isset($this->data['subcontent']['category']))
-    $category = $this->data['subcontent']['category'];
-if(isset($this->data['subcontent']['pageTotal']))
-    $pageTotal = $this->data['subcontent']['pageTotal'];
-if(isset($this->data['subcontent']['pageConditions']))
-    $pageConditions =  $this->data['subcontent']['pageConditions'];
+    if(isset($this->data['subcontent']['category']))
+        $category = $this->data['subcontent']['category'];
+    if(isset($this->data['subcontent']['page_total']))
+        $page_total = $this->data['subcontent']['page_total'];
+    if(isset($this->data['subcontent']['page_conditions']))
+        $page_conditions =  $this->data['subcontent']['page_conditions'];
 ?>
 
 <div class="wrapper">
     <div class="category_content">
         <div class="cate_header">
             <p>Danh mục sản phẩm <?php echo isset($data['category'])?strtoupper($data['category']) : false; ?>
-            <?php echo isset($data['catename'])?': '.$data['catename'] : false; ?></p>
+            <?php echo isset($data['cate_name'])?': '.$data['cate_name'] : false; ?></p>
         </div>
-        <div class="cate_body" id="cateItem">
-            <?php if(isset($pageTotal)): ?>
-                <?php $cateCount = 0; foreach($category as $cateItem): $cateCount++;?>
+        <div class="cate_body" id="cate_item">
+            <?php if(isset($page_total)): ?>
+                <?php $cate_count = 0; foreach($category as $cate_item): $cate_count++;?>
                     <div class="cate_item">
                         <div class="item_top">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $cateItem['name']; ?>.png" 
-                            alt="<?php echo $cateItem['name']; ?>" />
-                            <a href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $cateItem['name']; ?>">
+                            <img src="<?php echo _WEB_ROOT; ?>/public/assets/styles/IMG/products/<?php echo $cate_item['name']; ?>.png" 
+                            alt="<?php echo $cate_item['name']; ?>" />
+                            <a href="<?php echo _WEB_ROOT; ?>/detail?name=<?php echo $cate_item['name']; ?>">
                                     <div class="item_buy">
                                         <p class="text">Click để xem chi tiết</p>
                                         <div class="btn_buy">Đặt hàng</div>
@@ -30,13 +28,13 @@ if(isset($this->data['subcontent']['pageConditions']))
                             </a>
                         </div>
                         <div class="item_bottom">
-                            <h2 class="product_text_lg"><?php echo $cateItem['name']; ?></h2>
-                            <p class="product_price"><?php echo number_format($cateItem['price'],0," ","."); ?> VND</p">
+                            <h2 class="product_text_lg"><?php echo $cate_item['name']; ?></h2>
+                            <p class="product_price"><?php echo number_format($cate_item['price'],0," ","."); ?> VND</p">
                         </div>
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
-            <?php if(!isset($pageTotal)): ?>
+            <?php if(!isset($page_total)): ?>
                 <?php for($i = 1; $i <=4 ; $i++): ?>
                     <div class="cate_item">
                             <div class="item_top">
@@ -58,8 +56,8 @@ if(isset($this->data['subcontent']['pageConditions']))
                         </i>
                     </span>
                 </a>
-                <?php if(isset($pageTotal)): ?>
-                    <?php for($i = 1; $i <= $pageTotal; $i++): ?>
+                <?php if(isset($page_total)): ?>
+                    <?php for($i = 1; $i <= $page_total; $i++): ?>
                         <a class="pagination-page-number" id="page-<?php echo $i; ?>"><?php echo $i; ?></a>
                     <?php endfor; ?>
                 <?php endif; ?>
@@ -80,17 +78,17 @@ if(isset($this->data['subcontent']['pageConditions']))
 
 <script>
     $(document).ready(function() {
-        <?php if($pageTotal != 0): ?>
-            <?php for($i = 1; $i <= $pageTotal; $i++): ?>
+        <?php if($page_total != 0): ?>
+            <?php for($i = 1; $i <= $page_total; $i++): ?>
             $('#page-<?php echo $i; ?>').click(function() {
                 var pageNumber = <?php echo $i; ?>;
-                var pageConditions = "<?php echo $pageConditions; ?>";
+                var page_conditions = "<?php echo $page_conditions; ?>";
                 $.ajax({
                     url:'<?php echo _WEB_ROOT; ?>/category/Pagination',
                     method: 'GET',
-                    data: {pageNumber:pageNumber, pageConditions:pageConditions},
+                    data: {pageNumber:pageNumber, page_conditions:page_conditions},
                     success: function(data){
-                        $('#cateItem').html(data);
+                        $('#cate_item').html(data);
                     }
                 });
             });

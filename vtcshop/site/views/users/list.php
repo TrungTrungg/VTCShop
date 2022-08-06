@@ -106,7 +106,7 @@
                     modal<?php echo $user['id'] ?>.classList.remove('open');
                 });
                 $('#btn-delete-<?php echo $user['id']; ?>').click(function() {
-                    let id = <?php echo $user['id']; ?>;
+                    const id = <?php echo $user['id']; ?>;
                     $.ajax({
                         url: '<?php echo _WEB_ROOT; ?>/admin/user/deleteUser',
                         method: 'GET',

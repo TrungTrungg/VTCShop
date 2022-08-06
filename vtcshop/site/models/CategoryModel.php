@@ -6,75 +6,93 @@
         }
 
         public function getCate() {
-            $request = new Request();
-            $data = $request->getFields();
-            if(isset($data['nameSearch'])) {
-                $dataSearch = urldecode($data['nameSearch']);
-                $query = "SELECT * FROM products WHERE products.name LIKE '%$dataSearch%' ; ";
+            $req = new Request();
+            $data = $req->getFields();
+            if(isset($data['keyword'])) {
+                $keyword = urldecode($data['keyword']);
+                $query = "SELECT products.id,products.name,
+                                products.price,products.quantity,
+                                products.sold, products.is_trend 
+                                FROM products 
+                                WHERE products.name 
+                                LIKE '%$keyword%' ; ";
             }
             if(isset($data['category'])) {
-                $data1 = urldecode($data['category']);
-                $query = "SELECT products.* FROM products JOIN product_categories 
+                $data_cate = urldecode($data['category']);
+                $query = "SELECT products.id,products.name,
+                                products.price,products.quantity,
+                                products.sold, products.is_trend FROM products JOIN product_categories 
                                                 ON products.id = product_categories.product_id 
                                                 JOIN categories 
                                                 ON product_categories.category_id = categories.id 
-                                                WHERE categories.name = '$data1'";
+                                                WHERE categories.name = '$data_cate'";
             }
             if( isset ($data['category2'])){
-                $data2 = urldecode($data['category2']);
-                $query = "SELECT products.* FROM products JOIN product_categories 
+                $data_brand = urldecode($data['category2']);
+                $query = "SELECT products.id,products.name,
+                                products.price,products.quantity,
+                                products.sold, products.is_trend FROM products JOIN product_categories 
                                                 ON products.id = product_categories.product_id 
                                                 JOIN categories 
                                                 ON product_categories.category_id = categories.id 
-                                                WHERE categories.name = '$data1' AND products.id 
+                                                WHERE categories.name = '$data_cate' AND products.id 
                                                 IN ( SELECT products.id FROM products JOIN product_categories 
-                                                                                        ON products.id = product_categories.product_id 
-                                                                                        JOIN categories 
-                                                                                        ON product_categories.category_id = categories.id 
-                                                                                        WHERE categories.name = '$data2')";
+                                                                        ON products.id = product_categories.product_id 
+                                                                        JOIN categories 
+                                                                        ON product_categories.category_id = categories.id 
+                                                                        WHERE categories.name = '$data_brand')";
             } 
             if( isset ($data['name'])){
-                $data2 =  urldecode($data['name']);
-                $query = "SELECT products.* FROM products JOIN product_categories 
+                $data_name =  urldecode($data['name']);
+                $query = "SELECT products.id,products.name,
+                                products.price,products.quantity,
+                                products.sold, products.is_trend FROM products JOIN product_categories 
                                                 ON products.id = product_categories.product_id 
                                                 JOIN categories 
                                                 ON product_categories.category_id = categories.id 
-                                                WHERE categories.name = '$data1' 
-                                                AND products.name = '$data2'";
+                                                WHERE categories.name = '$data_cate' 
+                                                AND products.name = '$data_name'";
             }
             if( isset ($data['price1'])){
-                $data2 =  urldecode($data['price1']);
-                $query = "SELECT products.* FROM products JOIN product_categories 
+                $data_price_max1 =  urldecode($data['price1']);
+                $query = "SELECT products.id,products.name,
+                                products.price,products.quantity,
+                                products.sold, products.is_trend FROM products JOIN product_categories 
                                                 ON products.id = product_categories.product_id 
                                                 JOIN categories 
                                                 ON product_categories.category_id = categories.id 
-                                                WHERE categories.name = '$data1' 
-                                                AND products.price < $data2";
+                                                WHERE categories.name = '$data_cate' 
+                                                AND products.price < $data_price_max1";
             }
             if( isset ($data['price2'])){
-                $data2 =  urldecode($data['price2']);
-                $query = "SELECT products.* FROM products JOIN product_categories 
+                $data_price_min1 =  urldecode($data['price2']);
+                $query = "SELECT products.id,products.name,
+                                products.price,products.quantity,
+                                products.sold, products.is_trend FROM products JOIN product_categories 
                                                 ON products.id = product_categories.product_id 
                                                 JOIN categories 
                                                 ON product_categories.category_id = categories.id 
-                                                WHERE categories.name = '$data1' 
-                                                AND products.price > $data2";
+                                                WHERE categories.name = '$data_cate' 
+                                                AND products.price > $data_price_min1";
             }
             if( isset ($data['price3']) && isset($data['price4'])){
-                $data2 =  urldecode($data['price3']);
-                $data3 =  urldecode($data['price4']);
-                $query = "SELECT products.* FROM products JOIN product_categories 
+                $data_price_min2 =  urldecode($data['price3']);
+                $data_price_max2 =  urldecode($data['price4']);
+                $query = "SELECT products.id,products.name,
+                                products.price,products.quantity,
+                                products.sold, products.is_trend FROM products JOIN product_categories 
                                                 ON products.id = product_categories.product_id 
                                                 JOIN categories 
                                                 ON product_categories.category_id = categories.id 
-                                                WHERE categories.name = '$data1' 
-                                                AND products.price >= $data2 
-                                                AND products.price <= $data3";
+                                                WHERE categories.name = '$data_cate' 
+                                                AND products.price >= $data_price_min2 
+                                                AND products.price <= $data_price_max2";
             }
             if(!isset($query)) {
-                $query = "SELECT * FROM products ORDER BY RAND() LIMIT 4";
-            };
-            return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+                return null;
+            }else{
+                return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+            }
         }
         public function searchSuggestions($keyword) {
             $query = "SELECT * FROM products WHERE products.name LIKE '%$keyword%' LIMIT 4 ";
