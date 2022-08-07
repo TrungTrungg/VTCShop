@@ -1,6 +1,6 @@
 <?php
     $users = $this->data['subcontent']['user'];
-    $pageTotal = $this->data['subcontent']['pageTotal'];
+    $page_total = $this->data['subcontent']['page_total'];
 ?>
 
 
@@ -61,7 +61,7 @@
                             </i>
                         </span>
                     </a>
-                    <?php for($i = 1; $i <= $pageTotal; $i++): ?>
+                    <?php for($i = 1; $i <= $page_total; $i++): ?>
                     <a class="pagination-page-number" id="page-<?php echo $i; ?>"><?php echo $i; ?></a>
                     <?php endfor; ?>
                     <a class="pagination-next" id="next">
@@ -116,13 +116,13 @@
                 })
             <?php endforeach; ?>
 
-            <?php for($i = 1; $i <= $pageTotal; $i++): ?>
+            <?php for($i = 1; $i <= $page_total; $i++): ?>
             $('#page-<?php echo $i; ?>').click(function() {
-                var pageNumber = <?php echo $i; ?>;
+                var page_number = <?php echo $i; ?>;
                 $.ajax({
                     url: '<?php echo _WEB_ROOT; ?>/admin/user/pagination',
                     method: 'GET',
-                    data: {pageNumber:pageNumber},
+                    data: {page_number:page_number},
                     success: function(data) {
                         $('#dataPage').html(data);
                     }

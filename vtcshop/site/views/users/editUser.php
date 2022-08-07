@@ -1,5 +1,5 @@
 <?php
-    $user = $this->data['subcontent']['user'][0];
+    $user = $this->data['subcontent']['user_info'][0];
     $id = $user['id'];
     $username = $user['username'];
     $fullname = $user['fullname'];
@@ -88,7 +88,7 @@
             $.ajax({
                 url: "<?php echo _WEB_ROOT; ?>/admin/user/checkUser",
                 method: "GET",
-                data: {email:email},
+                data: {email:email, id:<?php echo $id; ?>},
                 success: function(data){
                     $('#erroremail').html(data);
 
@@ -104,7 +104,7 @@
             $.ajax({
                 url: "<?php echo _WEB_ROOT; ?>/admin/user/checkUser",
                 method: "GET",
-                data: {phone_number:phone_number},
+                data: {phone_number:phone_number, id:<?php echo $id; ?>},
                 success: function(data){
                     $('#errorphone').html(data);
 

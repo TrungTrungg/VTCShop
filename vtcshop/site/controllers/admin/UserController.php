@@ -9,24 +9,26 @@
         }
 
         public function index() {
-            $this->data['content'] = 'users/list';
-            $this->data['subcontent']['title'] = 'Danh sách người dùng';
             $from = 0;
             $num = 8;
+            $this->data['content'] = 'users/list';
+            $this->data['subcontent']['title'] = 'Danh sách người dùng';
             $this->data['subcontent']['user'] =  $this->userModel->getUserPerPage($from,$num);
-            $allUser = $this->userModel->getAllUser();
-            $userCount = count($allUser);
-            $this->data['subcontent']['pageTotal'] = ceil($userCount / 8);
+            $all_user = $this->userModel->getAllUser();
+            $user_count = count($all_user);
+            $this->data['subcontent']['page_total'] = ceil($user_count / 8);
             $this->render('layouts/admin_layout', $this->data);
         }
 
         public function pagination() {
-            if(isset($_GET['pageNumber'])) {
-                $pageNumber = $_GET['pageNumber'];
+            $req = new Request();
+            $data = $req->getFields();
+            if(isset($data['page_number'])) {
+                $page_number = $data['page_number'];
                 $num = 8;
-                $from = ($pageNumber - 1) * $num;
-                $pageResult = $this->userModel->getUserPerPage($from,$num);
-                $numm = ($num * $pageNumber) - 7;
+                $from = ($page_number - 1) * $num;
+                $page_result = $this->userModel->getUserPerPage($from,$num);
+                $numm = ($num * $page_number) - 7;
                 echo '<table class="dashboard_content_table">
                 <thead>
                     <tr>
@@ -39,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-scroll">';
-                foreach($pageResult as $user) {
+                foreach($page_result as $user) {
                 echo '<tr>
                         <td class="c1">'.$numm.'</td>
                         <td class="c2">'.$user['name'].'</td>
@@ -53,7 +55,7 @@
                     $numm +=1; };
                     echo '</tbody>
                         </table>';
-                    foreach($pageResult as $user){
+                    foreach($page_result as $user){
                     echo '<div class="modalSuccess">
                     <div class="modalS modalD-'.$user['id'].'">
                         <div class="modal_content">
@@ -72,7 +74,7 @@
                 echo '<script type="text/javascript">
                 $(document).ready(function() {';
                     
-                    foreach($pageResult as $user){
+                    foreach($page_result as $user){
                 echo  'const modal'.$user['id'].' = document.querySelector(".modalD-'.$user['id'].'");
                 $("#btn-open-modal-'.$user['id'].'").click(function() {
                     modal'.$user['id'].'.classList.add("open");
@@ -95,24 +97,25 @@
         }
 
         public function addUser() {
-            unset($_SESSION['editUser']);
             $this->data['content'] = 'users/addUser';
             $this->data['subcontent']['title'] = 'Thêm người dùng';
             $this->render('layouts/admin_layout', $this->data);
         }
 
         public function processAddUser() {
-            if($_POST['username'] != "" && $_POST['name'] != "" && $_POST['email'] != "" &&
-            $_POST['phone_number'] != "" && $_POST['address'] != "" && $_POST['password'] != "") {
-                $username = $_POST['username'];
-                $fullname = $_POST['name'];
-                $email = $_POST['email'];
-                $phone_number = $_POST['phone_number'];
-                $address = $_POST['address'];
-                $password = md5($_POST['password'].time());
-                $role_id = $_POST['role_id'];
-                $checkUser = $this->userModel->checkUsername($username);
-                if ($checkUser == null) {
+            $req = new Request();
+            $data = $req->getFields();
+            if($data['username'] != "" && $data['name'] != "" && $data['email'] != "" &&
+            $data['phone_number'] != "" && $data['address'] != "" && $data['password'] != "") {
+                $username = $data['username'];
+                $fullname = $data['name'];
+                $email = $data['email'];
+                $phone_number = $data['phone_number'];
+                $address = $data['address'];
+                $password = md5($data['password'].time());
+                $role_id = $data['role_id'];
+                $check_user = $this->userModel->checkUsername($username);
+                if ($check_user == null) {
                 $this->userModel->addUser($username, $fullname, $email, $phone_number,$address, $password, $role_id);
                 echo '<div class="modal open">
                         <div class="modal_content">
@@ -161,16 +164,20 @@
         }
 
         public function deleteUser() {
-            if(isset($_GET['id'])) {
-                $id = $_GET['id'];
+            $req = new Request();
+            $data = $req->getFields();
+            if(isset($data['id'])) {
+                $id = $data['id'];
                 $this->userModel->deleteUser($id);
             }
         }
 
         public function findUser() {
-            if(isset($_GET['keyword'])) {
-                $keyword = $_GET['keyword'];
-                $dataSearch = $this->userModel->findUser($keyword);
+            $req = new Request();
+            $data = $req->getFields();
+            if(isset($data['keyword'])) {
+                $keyword = $data['keyword'];
+                $data_search = $this->userModel->findUser($keyword);
                 $numm = 1;
                 echo '<table class="dashboard_content_table">
                 <thead>
@@ -184,7 +191,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-scroll">';
-                foreach($dataSearch as $user) {
+                foreach($data_search as $user) {
                 echo '<tr>
                         <td class="c1">'.$numm.'</td>
                         <td class="c2">'.$user['name'].'</td>
@@ -198,7 +205,7 @@
                     $numm +=1; };
                     echo '</tbody>
                         </table>';
-                    foreach($dataSearch as $user){
+                    foreach($data_search as $user){
                     echo '<div class="modalSuccess">
                     <div class="modalS modalD-'.$user['id'].'">
                         <div class="modal_content">
@@ -217,7 +224,7 @@
                 echo '<script type="text/javascript">
                 $(document).ready(function() {';
                     
-                    foreach($dataSearch as $user){
+                    foreach($data_search as $user){
                 echo  'const modal'.$user['id'].' = document.querySelector(".modalD-'.$user['id'].'");
                 $("#btn-open-modal-'.$user['id'].'").click(function() {
                     modal'.$user['id'].'.classList.add("open");
@@ -240,95 +247,86 @@
         }
 
         public function checkUser() {
-            if(isset($_GET['username'])) {
-            if($_GET['username'] != "") {
-                $username = $_GET['username'];
-                $checkUsername = $this->userModel->checkUsername($username);
-                if($checkUsername != null) {
-                    echo "Tên tài khoản đã được đăng ký!";
-                }
-            }else {
-                echo "Không được để trống tên đăng nhập!";
-            }
-            }
-            if(isset($_GET['email'])) {
-            if($_GET['email'] != "") {
-                $email = $_GET['email'];
-                if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                if(empty($_SESSION['editUser'])) {
-                    $checkUseremail = $this->userModel->checkUseremail($email);
-                        if($checkUseremail != null) {
-                            echo "Email đã được đăng ký!";
-                        }
-                }else {
-                    $emailS = $_SESSION['editUser'][0]['email'];
-                    if($email != $emailS) {
-                        $checkUseremail = $this->userModel->checkUseremail($email);
-                        if($checkUseremail != null) {
-                            echo "Email đã được đăng ký!";
-                        }
+            $req = new Request();
+            $data = $req->getFields();
+            $user_id = $data['id'];
+            $user_info = $this->userModel->getUserById($user_id)[0];
+            $user_email = $user_info['email'];
+            $user_phone = $user_info['phone_number'];
+            if(isset($data['username'])) {
+                if($data['username'] != "") {
+                    $username = $data['username'];
+                    $check_username = $this->userModel->checkUsername($username);
+                    if($check_username != null) {
+                        echo "Tên tài khoản đã được đăng ký!";
                     }
-                }
                 }else {
-                    echo "Đây không phải email!";
+                    echo "Không được để trống tên đăng nhập!";
                 }
-            }else {
-                echo "Không được để trống email!";
             }
+            if(isset($data['email'])) {
+                if($data['email'] != "") {
+                    $email = $data['email'];
+                    if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        if($email != $user_email) {
+                            $check_email = $this->userModel->checkUseremail($email);
+                            if($check_email != null) {
+                                echo "Email đã được đăng ký!";
+                            }
+                        }
+                    }else {
+                        echo "Đây không phải email!";
+                    }
+                }else {
+                    echo "Không được để trống email!";
+                }
             }
 
-            if(isset($_GET['phone_number'])) {
-            if($_GET['phone_number'] != "") {
-                $phone_number = $_GET['phone_number'];
-                if(preg_match('/^[0-9]{10}+$/', $phone_number)) {
-                if(empty($_SESSION['editUser'])) {
-                    $checkUserphone = $this->userModel->checkUserphone($phone_number);
-                        if($checkUserphone != null) {
-                            echo "Số điện thoại đã được đăng ký!";
+            if(isset($data['phone_number'])) {
+                if($data['phone_number'] != "") {
+                    $phone_number = $data['phone_number'];
+                    if(preg_match('/^[0-9]{10}+$/', $phone_number)) {
+                        if($phone_number != $user_phone) {
+                            $check_phone = $this->userModel->checkUserphone($phone_number);
+                            if($check_phone != null) {
+                                echo "Số điện thoại đã được đăng ký!";
+                            }
                         }
-                }else {
-                    $phone_numberS = $_SESSION['editUser'][0]['phone_number'];
-                    if($phone_number != $phone_numberS) {
-                        $checkUserphone = $this->userModel->checkUserphone($phone_number);
-                        if($checkUserphone != null) {
-                            echo "Số điện thoại đã được đăng ký!";
-                        }
+                    }else {
+                        echo "Số điện thoại không đúng!";
                     }
+                }else {
+                    echo "Không được để trống số điện thoại!";
                 }
-            }else {
-                echo "Số điện thoại không đúng!";
-            }
-            }else {
-                echo "Không được để trống số điện thoại!";
-            }
             }
         }
 
         public function editUser() {
-            $request = new Request();
-            $data = $request ->getFields();
+            $req = new Request();
+            $data = $req ->getFields();
             $this->data['content'] = 'users/editUser';
             $this->data['subcontent']['title'] = 'Trang sửa thông tin người dùng';
             if(isset($data['id'])) {
                 $id = $data['id'];
-                $user = $this->data['subcontent']['user'] = $this->userModel->getUserById($id);
-                $_SESSION['editUser'] = $user;
+                $this->data['subcontent']['user_info'] = $this->userModel->getUserById($id);
             }
             $this->render('layouts/admin_layout', $this->data);
         }
 
         public function processEditUser() {
-            if($_POST['fullname'] != "" && $_POST['email'] != "" &&
-            $_POST['phone_number'] != "" && $_POST['address'] != "") {
-                $id = $_POST['id'];
-                $fullname = $_POST['fullname'];
-                $email = $_POST['email'];
-                $phone_number = $_POST['phone_number'];
-                $address = $_POST['address'];
-                $role_id = $_POST['role_id'];
-                if($_POST['password'] != "")
+            $req = new Request();
+            $data = $req ->getFields();
+            if($data['fullname'] != "" && $data['email'] != "" &&
+            $data['phone_number'] != "" && $data['address'] != "") {
+                $id = $data['id'];
+                $fullname = $data['fullname'];
+                $email = $data['email'];
+                $phone_number = $data['phone_number'];
+                $address = $data['address'];
+                $role_id = $data['role_id'];
+                if($data['password'] != "")
                 {
-                    $password = md5($_POST['password']);
+                    $password = md5($data['password']);
                     $this->userModel->editUser($id,$fullname,$email,$phone_number,$address,$password,$role_id);
                 }else {
                     $this->userModel->editUserWithoutPassword($id,$fullname,$email,$phone_number,$address,$role_id);
@@ -381,16 +379,16 @@
         }
 
         public function login() {
+            $req = new Request();
+            $data = $req->getFields();
             $this->data['content'] = 'users/adminLogin';
             $this->data['subcontent']['title'] = 'Trang đăng nhập quản trị viên';
-            $request = new Request();
-            $data = $request->getFields();
             if(isset($data['username']) && isset($data['password'])) {
             if($data['username'] != "" && $data['password'] != "") {
                 $username = $data['username'];
                 $password = md5($data['password']);
-                $dataAdmin = $this->userModel->loginUser($username, $password);
-                if($dataAdmin == null) {
+                $admin_data = $this->userModel->loginUser($username, $password);
+                if($admin_data == null) {
                     echo    '<div class="wrapper">
                             <div class="modal_account js-modal-login open">
                                 <div class="modal_content">
@@ -413,7 +411,7 @@
                             })
                         </script>';
                 } else {
-                    if($dataAdmin[0]['role_id'] != 1) {
+                    if($admin_data[0]['role_id'] != 1) {
                         echo    '<div class="wrapper">
                             <div class="modal_account js-modal-login open">
                                 <div class="modal_content">
@@ -437,10 +435,10 @@
                         </script>';
                     }else {
                         date_default_timezone_set('Asia/Ho_Chi_Minh');
-                        $token = md5($dataAdmin[0]['username'].time());
-                        $user_id = $dataAdmin[0]['id'];
+                        $token = md5($admin_data[0]['username'].time());
+                        $user_id = $admin_data[0]['id'];
                         setcookie('adminToken', $token, time() + 24 * 60 * 60,'/');
-                        $_SESSION['admin'] = $dataAdmin;
+                        $_SESSION['admin'] = $admin_data;
                         $fullname = $_SESSION['admin'][0]['fullname'];
                         $logintime = date('Y-m-d H:i:s');
                         $this->userModel->addAdminLogin($fullname, $logintime);

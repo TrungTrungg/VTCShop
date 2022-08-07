@@ -73,7 +73,7 @@
                                             password = '$password', 
                                             role_id = '$role_id'
                                             WHERE id = '$id'";
-            return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);                                                                    
+            return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function editUserWithoutPassword($id,$fullname,$email,$phone_number,$address,$role_id) {
