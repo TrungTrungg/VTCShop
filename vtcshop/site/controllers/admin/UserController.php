@@ -249,6 +249,7 @@
         public function checkUser() {
             $req = new Request();
             $data = $req->getFields();
+            if(isset ($data['id'])) {
             $user_id = $data['id'];
             $user_info = $this->userModel->getUserById($user_id)[0];
             $user_email = $user_info['email'];
@@ -299,6 +300,7 @@
                     echo "Không được để trống số điện thoại!";
                 }
             }
+        }
         }
 
         public function editUser() {

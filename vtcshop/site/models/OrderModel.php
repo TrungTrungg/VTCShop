@@ -61,6 +61,7 @@
                                         SUM(order_details.quantity) as totalQty
                                         FROM orders, order_details
                                         WHERE orders.id LIKE '%$keyword%'
+                                        AND orders.id = order_details.order_id
                                         GROUP BY orders.id
                                         ORDER BY orders.id DESC
                                         LIMIT 0, 8";

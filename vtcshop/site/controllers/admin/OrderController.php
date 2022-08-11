@@ -88,6 +88,7 @@
             $data = $req->getFields();
             $keyword = $data['keyword'];
             $orderSearch = $this->orderModel->findOrder($keyword);
+            
             echo '<table class="dashboard_content_table">
                         <thead>
                             <tr>

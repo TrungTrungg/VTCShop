@@ -110,7 +110,7 @@
             $data['phone_number'] != "" && $data['email'] != "") {
                 $fullname = $data['fullname'];
                 $address = $data['address'];
-                $get_order = $this->orderModel->get_order();
+                $get_order = $this->orderModel->getOrder();
                 $order_id = $get_order[0]['MAX(id)'];
                 $phone_number = $data['phone_number'];
                 if(!empty($_SESSION['cart'])) {
@@ -122,7 +122,7 @@
                     $this->orderModel->saveOrderDetail($order_id,$product_id,$price,$qty);
                     $this->modelProduct->updateProductSold($product_id,$qty);
                     }
-                    $get_order_detail = $this->orderModel->get_orderDetail($order_id);
+                    $get_order_detail = $this->orderModel->getOrderDetail($order_id);
                     setcookie('data_cart','',time() - 24 * 60 * 60, '/');
                     unset($_SESSION['cart']);
                     echo    '<div class="wrapper">

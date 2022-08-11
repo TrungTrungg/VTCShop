@@ -14,7 +14,7 @@
             $from = 0;
             $num = 8;
             $this->data['subcontent']['product'] = $this->productModel->getProductPerPage($from,$num);
-            $productCount = $this->productModel->countAllProd()['prod_count'];
+            $productCount = $this->productModel->countAllProd()[0]['prod_count'];
             $this->data['subcontent']['pageTotal'] = ceil($productCount / 8);
             $this->render('layouts/admin_layout', $this->data);
         }

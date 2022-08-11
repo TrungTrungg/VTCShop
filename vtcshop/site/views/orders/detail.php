@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="footer">
-            <div class="btn-save" id="btn-save"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" style="color: #fff;">Trở về</a></div>
+            <div class="btn-save" id="btn-save"><a href="<?php echo _WEB_ROOT; ?>/admin/order" style="color: #fff;">Trở về</a></div>
         </div>
     </div>
 </div>

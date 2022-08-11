@@ -33,6 +33,7 @@
                 </thead>
                 <tbody class="table-scroll">
                     <?php $num = 1; foreach($orderList as $order): ?>
+                        
                     <tr>
                         <td class="c1"><?php echo $num; ?></td>
                         <td class="c2"><?php echo $order['id']; ?></td>

@@ -53,13 +53,17 @@
             $query = "SELECT products.id,products.name,
                             products.price,products.quantity,
                             products.sold, products.is_trend, 
-                            categories.name as brand FROM products JOIN product_categories
-                                                                ON products.id = product_categories.product_id
-                                                                JOIN categories
-                                                                ON product_categories.category_id = categories.id
-                                                                WHERE products.name LIKE '%$keyword%'
-                                                                ORDER BY products.name ASC
-                                                                LIMIT 0, 8";
+                            categories.name as brand 
+                            FROM products 
+                            JOIN product_categories
+                            ON products.id = product_categories.product_id
+                            JOIN categories
+                            ON product_categories.category_id = categories.id
+                            WHERE products.name LIKE '%$keyword%'
+                            AND (categories.is_brand = 1 
+                            OR categories.is_brand = 2)
+                            ORDER BY products.name ASC
+                            LIMIT 0, 8";
             return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
                                             
         }

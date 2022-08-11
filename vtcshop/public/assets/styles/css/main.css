@@ -220,6 +220,11 @@ body {
     align-items: center;
 }
 
+.header_content_search .search_suggestions ul .search_item:hover {
+    background: linear-gradient(to left, #ffcccc 0%, #ffffcc 100%);
+
+}
+
 .header_content_search .search_suggestions ul .search_item a .search_img {
     width: 7rem;
     height: 7rem;
